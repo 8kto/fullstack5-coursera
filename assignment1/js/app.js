@@ -43,6 +43,7 @@
 
             // Removes all empty items
             items = items.filter(function (item) {
+                item = item.trim();
                 return (item && 0 !== item.length);
             });
 
