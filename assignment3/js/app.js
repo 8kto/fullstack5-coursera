@@ -55,7 +55,7 @@
 
         directive.isEmpty = function () {
             // Strong comparison not pass 'undefined' before any search
-            return searchService.isEmptyState === true;
+            return searchService.isEmptyState() === true;
         }
     }
 
@@ -79,7 +79,7 @@
          *
          * @type {Boolean|undefined}
          */
-        service.isEmptyState = void 0; // zen version of undefined. Om!
+        var isEmptyState = void 0; // zen version of undefined. Om!
 
         /**
          * Load terms and filter them
@@ -106,9 +106,23 @@
                     });
             }).catch(function (error) {
                 console.error("Something went terribly wrong: " + error);
-                service.isEmptyState = true;
+                service.setEmptyState(true);
             });
         };
+
+        /**
+         * @param {Boolean} state
+         */
+        service.setEmptyState = function (state) {
+            isEmptyState = state;
+        };
+
+        /**
+         * @return {Boolean|undefined}
+         */
+        service.isEmptyState = function () {
+            return isEmptyState;
+        }
     }
 
     NarrowItDownController.$inject = ['MenuSearchService'];
@@ -138,7 +152,7 @@
 
             // Term is not provided
             if (!ctrl.searchTerm) {
-                searchService.isEmptyState = true;
+                searchService.setEmptyState(true);
                 return;
             }
 
@@ -146,11 +160,11 @@
                 .getMatchedMenuItems(ctrl.searchTerm)
                 .then(function (items) {
                     if (items && items.length) {
-                        ctrl.found                 = items;
-                        searchService.isEmptyState = false;
+                        ctrl.found = items;
+                        searchService.setEmptyState(false);
                     }
                     else {
-                        searchService.isEmptyState = true;
+                        searchService.setEmptyState(true);
                     }
                 });
         };
@@ -162,7 +176,7 @@
             ctrl.found.splice(itemIndex, 1);
 
             if (!ctrl.found || !ctrl.found.length) {
-                searchService.isEmptyState = true;
+                searchService.setEmptyState(true);
             }
         };
     }
