@@ -7,15 +7,11 @@
             templateUrl: 'src/spinner/loadingspinner.template.html',
             controller : SpinnerController
         })
-        .run(function() {
-            console.log('run');
-        })
     ;
 
 
     SpinnerController.$inject = ['$rootScope'];
     function SpinnerController($rootScope) {
-        console.log(222);
         var $ctrl      = this;
         var cancellers = [];
 

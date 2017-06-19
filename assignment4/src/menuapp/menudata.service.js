@@ -1,15 +1,41 @@
 (function () {
     'use strict';
 
-    angular.module('Data')
+    /**
+     * JsDoc definitions for JSON-objects returned by REST-services
+     * for better IDE autocompletion.
+     * (works well in PhpStorm)
+     *
+     * @typedef {Object} Item
+     * @property {Number} id
+     * @property {String} name
+     * @property {String} description
+     * @property {String} large_portion_name
+     * @property {Number} price_large
+     * @property {Number} price_small
+     * @property {String} short_name
+     * @property {String} small_portion_name
+     */
+
+    /**
+     * @typedef {Object} Category
+     * @property {String} name
+     * @property {String} short_name
+     * @property {String} special_instructions
+     */
+    //---------------------------------------------
+
+    angular
+        .module('Data')
         .service('MenuDataService', MenuDataService);
 
-    MenuDataService.$inject = ['$http', 'ApiBasePath']
+    MenuDataService.$inject = ['$http', 'ApiBasePath'];
     function MenuDataService($http, ApiBasePath) {
         var service = this;
 
         /**
-         *
+         * Load all categories
+         * @return {angular.IPromise}
          */
         service.getAllCategories = function () {
             return $http({
@@ -20,37 +46,21 @@
             });
         };
 
-        /**fixme
+        /**
+         * Load items by category shortname
          *
-         *
-         *
-         * getItemsForCategory(categoryShortName) - this method should return a promise which is a result of using the $http service, using the following REST API endpoint: https://davids-restaurant.herokuapp.com/menu_items.json?category=, where, before the call to the server, your code should append whatever categoryShortName value was passed in as an argument into the getItemsForCategory method.
-         *
-         * Load terms and filter them
-         *
-         * @param {String} searchTerm
+         * @param {String} shortName
          * @return {angular.IPromise}
          */
-        service.getItemsForCategory = function (searchTerm) {
+        service.getItemsForCategory = function (shortName) {
             return $http({
                 method: "GET",
-                url   : (ApiBasePath + "/menu_items.json")
-            }).then(function (response) {
-                var term = searchTerm.toLowerCase();
-
-                if (!response.data || !response.data.menu_items) {
-                    throw new Error('No data loaded');
+                url   : (ApiBasePath + "/menu_items.json"),
+                params: {
+                    category: shortName
                 }
-
-                return response.data.menu_items.filter(
-                    /** @param {Item} item */
-                    function (item) {
-                        return -1 !== item.description.toLowerCase().indexOf(term);
-
-                    });
             }).catch(function (error) {
-                console.error("Something went terribly wrong: " + error);
-                service.setEmptyState(true);
+                console.error("Loading of category items failed", error);
             });
         };
     }

@@ -32,17 +32,22 @@
                 }
             })
 
+            // Items in category
+            .state('items', {
+                url        : '/categories/{categoryId}',
+                templateUrl: 'src/menuapp/templates/view/items.template.html',
+                controller : "ItemListController as itemList",
+                resolve    : {
+                    items: ['$stateParams', 'MenuDataService', function ($stateParams, menuService) {
+                        return menuService.getItemsForCategory($stateParams.categoryId);
+                    }]
+                }
+            })
+
             .state('justordinarypage', {
                 url        : '/justordinarypage',
                 templateUrl: 'src/ordinarypage/view.template.html'
             })
-
-        // Items in category
-        // .state('items', {
-        //     url        : '/categories/{categoryId}',
-        //     templateUrl: 'src/menuapp/templates/items.template.html',
-        //     controller : "ItemDetailController as itemDetail"
-        // });
         ;
     }
 

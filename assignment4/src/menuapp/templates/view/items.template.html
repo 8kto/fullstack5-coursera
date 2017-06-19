@@ -1,0 +1,27 @@
+<ul class="breadcrumb">
+    <li>
+        <i class="fa fa-home"></i> <a ui-sref="home">Home</a>
+    </li>
+    <li>
+        <i class="fa fa-list"></i> <a ui-sref="categories">Categories</a>
+    </li>
+    <li>
+        <i class="fa fa-list"></i> {{itemList.category.name}}
+    </li>
+</ul>
+
+<div class="alert alert-info" ng-if="itemList.category.special_instructions">
+    {{itemList.category.special_instructions}}
+</div>
+
+<div class="widget">
+    <div class="widget-header">
+        <h3>List of «{{itemList.category.name}}»</h3>
+    </div>
+    <div class="widget-content">
+        <items-list items="itemList.items"></items-list>
+    </div>
+</div>
+
+
+<!--<ui-view></ui-view>-->
