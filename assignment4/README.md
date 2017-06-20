@@ -1,7 +1,6 @@
 Module 4 Coding Assignment
 =======
 
-
 ### General Idea
 Super simple idea behind this week's assignment: use the restaurant menu REST API to create a master/detail view pair.
 
@@ -21,3 +20,7 @@ Make sure that if, while viewing the list of menu items for a particular categor
 + For sure list of breadcrumbs should be managed by special component. But it is out of the task requirements.
 + This app utilizes only Bootstrap's styles (except ones for spinner).
 + **Items** view state optionally displays special instructions for an active category if it is presented in response.
+
+
+### Demo
+GitHub page: https://8kto.github.io/fullstack5-coursera/assignment4/
