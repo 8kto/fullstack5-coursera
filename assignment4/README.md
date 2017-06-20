@@ -15,3 +15,9 @@ The categories view should list all available categories of items on the menu. E
 
 Make sure that if, while viewing the list of menu items for a particular category, the user copies the URL in the browser's address bar and pastes it into a new tab or a different browser, that the view is the same as the original one.
 
+
+### Notice
++ List of objects loaded from RESTful service doesn`t cache — but must be cached in real application
++ For sure list of breadcrumbs should be managed by special component. But it is out of the task requirements.
++ This app utilizes only Bootstrap's styles (except ones for spinner).
++ **Items** view state optionally displays special instructions for an active category if it is presented in response.

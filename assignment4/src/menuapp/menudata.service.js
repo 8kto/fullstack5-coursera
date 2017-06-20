@@ -5,7 +5,16 @@
      * JsDoc definitions for JSON-objects returned by REST-services
      * for better IDE autocompletion.
      * (works well in PhpStorm)
-     *
+     */
+
+    /**
+     * @typedef {Object} Category
+     * @property {String} name
+     * @property {String} short_name
+     * @property {String} special_instructions
+     */
+
+    /**
      * @typedef {Object} Item
      * @property {Number} id
      * @property {String} name
@@ -17,14 +26,11 @@
      * @property {String} small_portion_name
      */
 
-    /**
-     * @typedef {Object} Category
-     * @property {String} name
-     * @property {String} short_name
-     * @property {String} special_instructions
-     */
-    //---------------------------------------------
+    //-------------------------------------------------------------------------
 
+    /**
+     * Service loads data from RESTful service
+     */
     angular
         .module('Data')
         .service('MenuDataService', MenuDataService);
@@ -35,6 +41,7 @@
 
         /**
          * Load all categories
+         *
          * @return {angular.IPromise}
          */
         service.getAllCategories = function () {
@@ -42,7 +49,7 @@
                 method: "GET",
                 url   : (ApiBasePath + "/categories.json")
             }).catch(function (error) {
-                console.error("Something went terribly wrong", error);
+                console.error("Loading of categories failed", error);
             });
         };
 

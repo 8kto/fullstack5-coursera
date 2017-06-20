@@ -1,6 +1,9 @@
 (function () {
     'use strict';
 
+    /**
+     * Spinner code copied from lectures
+     */
     angular
         .module('Spinner')
         .component('loadingSpinner', {
@@ -8,7 +11,6 @@
             controller : SpinnerController
         })
     ;
-
 
     SpinnerController.$inject = ['$rootScope'];
     function SpinnerController($rootScope) {

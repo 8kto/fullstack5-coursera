@@ -5,19 +5,27 @@
         .module('MenuApp')
         .controller('ItemListController', ItemListController);
 
-    ItemListController.$inject = ['MenuDataService', 'items'];
+    ItemListController.$inject = ['items'];
     /**
+     * Storage injected by resolving service method
+     * @see MenuDataService.getItemsForCategory
      *
-     * @param {MenuDataService} menuService
-     * @param {Object} response
-     * @param {Object} response.data
-     * @constructor
+     * @param {Object} storage
+     * @param {Object} storage.data
      */
-    function ItemListController(menuService, response) {
+    function ItemListController(storage) {
         var itemList = this;
 
-        itemList.items    = response.data.menu_items;
-        itemList.category = response.data.category;
+        /**
+         * @type {Item[]}
+         */
+        itemList.items = storage.data.menu_items;
+
+        /**
+         * @type Category
+         */
+        itemList.category = storage.data.category;
     }
 
 })();
+
