@@ -1,1 +1,52 @@
-register
+<div class="container">
+    <h2 class="text-center" style="margin-bottom: 2em">Sign up</h2>
+
+    <div class="col-md-offset-3 col-md-6">
+        <fieldset>
+            <form name='regForm' novalidate>
+
+                <input type="text" name="username" placeholder="Pick a username"
+                       ng-model="regCtrl.user.username"
+                       required class="form-control"
+                       minlength="4"
+                       ng-maxlength="10">
+
+                <span ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched"
+                      class="help-block">
+            Username must be at least 4 characters long
+          </span>
+                <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched" class="help-block">
+            Username must not be longer than 16 characters
+          </span>
+                <br>
+
+                <input type="email" name="email" placeholder="Email"
+                       ng-model="regCtrl.user.email" class="form-control"
+                       required>
+                <span ng-if="regForm.email.$invalid && regForm.email.$touched" class="help-block">
+            Must be a valid email address: user@example.org format
+          </span>
+                <br>
+
+                <input type="text" name="phone" placeholder="Phone ###-###-####"
+                       ng-model="regCtrl.user.phone" class="form-control"
+                       pattern="(\d{3})-(\d{3})-(\d{4})">
+                <span ng-if="regForm.phone.$invalid && regForm.phone.$touched" class="help-block">
+            Phone must be in the format ###-###-####.
+          </span>
+                <br>
+
+                <button class="btn btn-primary"
+                        ng-disabled="regForm.$invalid"
+                        ng-click="regCtrl.submit()">Submit
+                </button>
+
+                <button class="btn btn-info"
+                        ng-click="regCtrl.debugFill()">Debug filling
+                </button>
+            </form>
+        </fieldset>
+
+    </div>
+
+</div>

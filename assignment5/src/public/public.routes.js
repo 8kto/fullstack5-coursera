@@ -49,7 +49,9 @@
             })
             .state('public.sign-up', {
                 url        : '/sign-up',
-                templateUrl: 'src/public/user/sign-up.html'
+                templateUrl: 'src/public/user/sign-up.html',
+                controller  : 'RegistrationController',
+                controllerAs: 'regCtrl'
             })
 
         ;
