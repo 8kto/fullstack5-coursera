@@ -33,8 +33,7 @@
          * Register valid user in user service
          */
         $ctrl.submit = function () {
-            $ctrl.submitted = true;
-            var shortName   = $ctrl.user.favoriteDish;
+            var shortName = $ctrl.user.favoriteDish;
 
             if (!shortName) {
                 throw new Error('No short name provided');
@@ -42,6 +41,8 @@
 
             menuService.getMenuItem(shortName)
                 .then(function (response) {
+                    $ctrl.submitted      = true;
+                    
                     if (response && response.short_name) {
                         $ctrl.menuItemExists = true;
                         userService.register($ctrl.user, response);
