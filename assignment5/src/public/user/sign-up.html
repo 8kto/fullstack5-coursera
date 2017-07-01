@@ -1,39 +1,58 @@
 <div class="container">
-    <h2 class="text-center" style="margin-bottom: 2em">Sign up</h2>
+    <h2 class="text-center" style="margin-bottom: 2em">Sign up for newsletter</h2>
 
     <div class="col-md-offset-3 col-md-6">
-        <fieldset>
-            <form name='regForm' novalidate>
 
-                <input type="text" name="username" placeholder="Pick a username"
-                       ng-model="regCtrl.user.username"
+        <fieldset ng-if="!regCtrl.isSigned()">
+            <form name='regForm' novalidate>
+                <input type="text" name="firstname" placeholder="Firstname"
+                       ng-model="regCtrl.user.firstname"
                        required class="form-control"
                        minlength="4"
-                       ng-maxlength="10">
+                       ng-maxlength="16">
 
-                <span ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched"
-                      class="help-block">
-            Username must be at least 4 characters long
-          </span>
-                <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched" class="help-block">
-            Username must not be longer than 16 characters
-          </span>
+                <span ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required) && regForm.firstname.$touched"
+                      class="help-block">First name must be at least 4 characters long</span>
+                <span ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched" class="help-block">
+                    First name must not be longer than 16 characters</span>
+                <br>
+
+                <input type="text" name="lastname" placeholder="Lastname"
+                       ng-model="regCtrl.user.lastname"
+                       required class="form-control"
+                       minlength="4"
+                       ng-maxlength="16">
+
+                <span ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required) && regForm.lastname.$touched"
+                      class="help-block">Last name must be at least 4 characters long</span>
+                <span ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched" class="help-block">
+                    Last name must not be longer than 16 characters</span>
                 <br>
 
                 <input type="email" name="email" placeholder="Email"
                        ng-model="regCtrl.user.email" class="form-control"
                        required>
                 <span ng-if="regForm.email.$invalid && regForm.email.$touched" class="help-block">
-            Must be a valid email address: user@example.org format
-          </span>
+                    Must be a valid email address: user@example.org format</span>
                 <br>
 
                 <input type="text" name="phone" placeholder="Phone ###-###-####"
                        ng-model="regCtrl.user.phone" class="form-control"
                        pattern="(\d{3})-(\d{3})-(\d{4})">
                 <span ng-if="regForm.phone.$invalid && regForm.phone.$touched" class="help-block">
-            Phone must be in the format ###-###-####.
-          </span>
+                    Phone must be in the format ###-###-####.</span>
+                <br>
+
+                <input type="text" name="favoriteDish" placeholder="Menu number of your favorite dish"
+                       ng-model="regCtrl.user.favoriteDish"
+                       required class="form-control"
+                       minlength="2"
+                       ng-maxlength="3">
+
+                <span ng-if="(regForm.favoriteDish.$error.minlength || regForm.favoriteDish.$error.required) && regForm.favoriteDish.$touched"
+                      class="help-block">Menu number must be at least 2 characters long</span>
+                <span ng-if="regForm.favoriteDish.$error.maxlength && regForm.favoriteDish.$touched" class="help-block">
+                    Menu number must not be longer than 3 characters</span>
                 <br>
 
                 <button class="btn btn-primary"
@@ -46,6 +65,11 @@
                 </button>
             </form>
         </fieldset>
+
+        <div class="alert ng-scope alert-info" ng-if="regCtrl.isSigned()" style="margin-top:1em">
+            Your information has been saved. <br>
+            Check <a ui-sref="public.user-info">your info</a>.
+        </div>
 
     </div>
 

@@ -1,1 +1,29 @@
-<h1> user info</h1>
+<div class="container">
+    <h2 class="text-center" style="margin-bottom: 2em">User info</h2>
+
+    <div class="col-md-offset-3 col-md-6">
+
+        <div id="info" ng-if="userCtrl.isSigned()">
+            <dl class="dl-horizontal">
+                <dt>First name</dt>
+                <dd>{{ userCtrl.user.firstname}}</dd>
+
+                <dt>Last name</dt>
+                <dd>{{ userCtrl.user.lastname}}</dd>
+
+                <dt>Email</dt>
+                <dd>{{ userCtrl.user.email }}</dd>
+
+                <dt>Phone</dt>
+                <dd>{{ userCtrl.user.phone }}</dd>
+            </dl>
+        </div>
+
+        <div class="alert alert-info" ng-if="!userCtrl.isSigned()">
+            Not Signed Up Yet.
+            <a ui-sref="public.sign-up">Sign up Now!</a>
+        </div>
+    </div>
+</div>
+
+

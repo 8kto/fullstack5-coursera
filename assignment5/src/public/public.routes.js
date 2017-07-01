@@ -45,7 +45,9 @@
             // Assignment's routes
             .state('public.user-info', {
                 url        : '/my-info',
-                templateUrl: 'src/public/user/user-info.html'
+                templateUrl: 'src/public/user/user-info.html',
+                controller  : 'UserController',
+                controllerAs: 'userCtrl'
             })
             .state('public.sign-up', {
                 url        : '/sign-up',

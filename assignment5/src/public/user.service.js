@@ -3,9 +3,11 @@
 
     /**
      * @typedef {Object} User
-     * @property {String} username
+     * @property {String} firstname
+     * @property {String} lastname
      * @property {String} email
      * @property {String} phone
+     * @property {String} favoriteDish
      */
 
     angular.module('public')
@@ -17,7 +19,9 @@
         /**
          * @type {User}
          */
-        service.user = null;
+        service.user = {};
+
+        service.signed = false;
 
         /**
          * @return {User}
@@ -30,10 +34,18 @@
          * @param {User} user
          */
         service.register = function (user) {
-            service.user = user;
-            console.log(user);
+            service.user   = user;
+            service.signed = true;
+
+            return true;
         };
 
+        /**
+         * @return {boolean}
+         */
+        service.isSigned = function () {
+            return service.signed;
+        }
     }
 
 })();
