@@ -12,6 +12,8 @@
         })
     ;
 
+    // Please note: its component's controller not module's
+    // thats why it is in one file
     SpinnerController.$inject = ['$rootScope'];
     function SpinnerController($rootScope) {
         var $ctrl      = this;
