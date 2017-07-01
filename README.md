@@ -6,4 +6,5 @@ Repo with my code and submissions related to the course **Single Page Web Applic
 * [Module 2 — Shopping List Check Off](https://8kto.github.io/fullstack5-coursera/assignment2/)
 * [Module 3 — Narrow Down Your Chinese Menu Choice](https://8kto.github.io/fullstack5-coursera/assignment3/)
 * [Module 4 — View states](https://8kto.github.io/fullstack5-coursera/assignment4/)
+* [Module 5 — Restaraunt sing up functional](https://8kto.github.io/fullstack5-coursera/assignment5/)
 
