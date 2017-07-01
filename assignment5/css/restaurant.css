@@ -138,8 +138,17 @@ a[ui-sref="admin.auth"] {
 
 /* END FOOTER */
 
-.help-block{
-    color:#fff
+.help-block {
+    color: #fff
+}
+
+.ng-not-empty.ng-invalid {
+    border-color: #f00;
+    color: #f00;
+}
+
+.help-block-error {
+    color: #f00;
 }
 
 /********** Medium devices only **********/

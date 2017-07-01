@@ -4,8 +4,14 @@
     angular.module('public')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['UserService'];
-    function RegistrationController(userService) {
+    RegistrationController.$inject = ['UserService', 'MenuService'];
+
+    /**
+     * @param {UserService} userService
+     * @param {MenuService} menuService
+     * @constructor
+     */
+    function RegistrationController(userService, menuService) {
         var $ctrl = this;
 
         /**
@@ -14,10 +20,38 @@
         $ctrl.user = userService.getUser();
 
         /**
+         * @type {boolean}
+         */
+        $ctrl.menuItemExists = false;
+
+        /**
+         * @type {boolean}
+         */
+        $ctrl.submitted = false;
+
+        /**
          * Register valid user in user service
          */
         $ctrl.submit = function () {
-            userService.register($ctrl.user);
+            $ctrl.submitted = true;
+            var shortName   = $ctrl.user.favoriteDish;
+
+            if (!shortName) {
+                throw new Error('No short name provided');
+            }
+
+            menuService.getMenuItem(shortName)
+                .then(function (response) {
+                    if (response && response.short_name) {
+                        $ctrl.menuItemExists = true;
+                        userService.register($ctrl.user, response);
+                    }
+                    else {
+                        $ctrl.menuItemExists = false;
+                    }
+                })
+            ;
+
         };
 
         /**

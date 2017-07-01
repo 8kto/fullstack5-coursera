@@ -1,22 +1,41 @@
 <div class="container">
     <h2 class="text-center" style="margin-bottom: 2em">User info</h2>
 
-    <div class="col-md-offset-3 col-md-6">
+    <div class="col-md-offset-2 col-md-8">
 
         <div id="info" ng-if="userCtrl.isSigned()">
-            <dl class="dl-horizontal">
-                <dt>First name</dt>
-                <dd>{{ userCtrl.user.firstname}}</dd>
 
-                <dt>Last name</dt>
-                <dd>{{ userCtrl.user.lastname}}</dd>
+            <div class="widget">
+                <div class="widget-header">
+                    <h3>Personal</h3>
+                </div>
+                <div class="widget-content">
+                    <dl class="dl-horizontal">
+                        <dt>First name</dt>
+                        <dd>{{ userCtrl.user.firstname}}</dd>
 
-                <dt>Email</dt>
-                <dd>{{ userCtrl.user.email }}</dd>
+                        <dt>Last name</dt>
+                        <dd>{{ userCtrl.user.lastname}}</dd>
 
-                <dt>Phone</dt>
-                <dd>{{ userCtrl.user.phone }}</dd>
-            </dl>
+                        <dt>Email</dt>
+                        <dd>{{ userCtrl.user.email }}</dd>
+
+                        <dt>Phone</dt>
+                        <dd>{{ userCtrl.user.phone }}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-header">
+                    <h3>Favorite menu item</h3>
+                </div>
+                <div class="widget-content">
+                    <menu-item menu-item="userCtrl.getUserFavoriteMenuItem()"></menu-item>
+                </div>
+            </div>
+
+
         </div>
 
         <div class="alert alert-info" ng-if="!userCtrl.isSigned()">
